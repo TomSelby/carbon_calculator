@@ -3,3 +3,4 @@ Notes for improvement:
   2. Make some stats using firebase realtime database on the homepage
   3. Contol rules for firebase database to improve security
   4. Implement transit calculation
+  5. Sanatise user input better
