@@ -4,3 +4,4 @@ Notes for improvement:
   3. Contol rules for firebase database to improve security
   4. Implement transit calculation
   5. Sanitize user input better
+  6. Build some style into css so looks nicer
