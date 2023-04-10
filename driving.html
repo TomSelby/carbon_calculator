@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv ="X-UA-Compatible" content="ie=edge">
+<title>Travel Carbon Emissions Calculator</title>
+<link rel="stylesheet" type ="text/css" href = "css/style.css"/>
+
+<script src="js/driving.js"></script>
+
+</head>
+  <body>
+  <center>
+  <h1>CO2 Travel Emissions Calculator- Driving</h1>
+  </center>
+  </body>
+  <div id = "top-panel">
+  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a>
+  </div>
+  
+  
+  <br>
+    
+<div>
+	<center>
+		<div>
+		<input type="text" id="from" placeholder = "Origin", size='50'/>
+		</div>
+		<div>
+		<input type="text" id="wp" placeholder = "Waypoint", size='50'/>
+		</div>
+		
+		<div>
+		<input type="text" id="to" placeholder = "Destination", size='50'/>
+
+		</div>	
+	
+	
+<br>
+	
+	<b>CRSid: </b><input type ='text', id="crsid", placeholder="anon123">
+	<b>Date of Travel: </b><input type='date' id='date'>
+	<b>Number of Travelers: </b><input type="number" min="1" id="traveler_num"/>
+	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
+						 <option value = "Post-Doc">Post-Doc</option> 
+						 <option value = "PhD">PhD Student</option> 
+						 <option value = "Masters">Masters Student</option> 
+						 <option value = "Undergraduate">Undergraduate Student</option> </select>
+				
+	<b>Fuel Type: </b><select id = 'fuel_type'><option value = "Petrol">Petrol</option> 
+							  <option value = "Diesel">Diesel</option> 
+							  <option value = "Hybrid">Hybrid</option> 
+							  <option value = "Electric">Electric</option> </select>
+
+
+	</center>
+<br>
+</div>
+
+<div id="map"></div>
+
+
+<center>
+  <div id="inputted_details">
+  <h3>Inputted Data</h3>
+	
+	<i>CRSid: <b><span id="inputted_crsid"></span></b></i>
+	<i>, Origin: <b><span id="inputted_origin"></span></b></i>
+	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
+	<i>, Date: <b><span id="inputted_date"></span></b></i>
+	<i>, Traveler Number: <b><span id="inputted_traveler_num"></span></b></i>
+	<i>, Role: <b><span id="inputted_role"></span></b></i>
+	<i>, Fuel Type: <b><span id="inputted_fuel"></span></b></i>
+
+  </div>
+
+
+<div id="estimated_emissions">
+<h3>Estimated Emissions</h3>
+	<div>
+	<i>Travelled Distance: <b><span id="first_travel_dist"></span> + <span id = "second_travel_dist"></span> =  <span id = "total_dist"></span></b></i>
+	</div>
+	<div>
+	<i>Estimated total kgs of CO2 Emitted: <b><span id="est_co2_emm"></span></b></i>
+	</div>
+	<div>
+	<i>Estimated kgs of CO2 Emitted per person: <b><span id="est_co2_emm_pp"></span></b></i>
+	</div>
+</div>
+
+<br>
+
+
+<div id="Submit Data">
+	<button type = "button" onclick="calc_route();">Submit Data</button>
+</div>
+</center>
+<br>
+  <div id ="test"></div> 
+
+
+
+	<!-- Load the API key-->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg&libraries=places&callback=initMap&v=weekly">	  
+	</script>
+  </body>
+</html>
