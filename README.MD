@@ -8,3 +8,4 @@ Notes for improvement:
   6. Build some style into css so looks nicer
   7. Add so only valid crsid can use website- or add login step
   8. Manage firebase rules
+  9. Give the option of multiple routes
