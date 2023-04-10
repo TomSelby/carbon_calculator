@@ -5,3 +5,4 @@ Notes for improvement:
   4. Implement transit calculation
   5. Sanitize user input better
   6. Build some style into css so looks nicer
+  7. Add so only valid crsid can use website- or add login step
