@@ -1,0 +1,117 @@
+function calc_transit_emissions(distance){
+	var dist = distance/1000;
+	var kmpg = (35*1.609344);
+	var gallons_used = (dist)/(kmpg);
+	var liters_used = 4.5461*gallons_used
+	var co2_per_liters = 2.20904+0.59852;
+	var emissions = (liters_used)*(co2_per_liters);
+	return emissions;
+}
+	
+function display_route(from_id, to_id){
+	// Map set-up
+	const center = {lat:52.1951, lng:0.1313};
+	const options = {zoom:7, scaleControl:true, center:center};
+	map = new google.maps.Map(document.getElementById("map"), options);
+	let directionsService = new google.maps.DirectionsService();
+	let directionsRenderer = new google.maps.DirectionsRenderer();
+	directionsRenderer.setMap(map); // Existing map object displays directions
+
+
+	//Display route
+	directionsService.route({
+		origin: { placeId: from_id},
+        destination: { placeId: to_id},
+        travelMode: 'TRANSIT'		
+	}, function(response, status) { // anonymous function to capture directions
+      if (status !== 'OK') {
+        window.alert('Directions request failed due to ' + status);
+        return;
+      } else {
+		  
+      directionsRenderer.setDirections(response); // Add route to the map
+	  var directionsData0 = response.routes[0]; // Get data about the mapped route
+	  
+        if (!directionsData0) {
+          window.alert('Directions request failed, transit fail');
+          return;
+        }
+	
+        else {
+          document.getElementById("travel_dist").innerHTML = directionsData0.legs[0].distance.text + " (" + directionsData0.legs[0].duration.text + ")";
+		  let travel_dist = (directionsData0.legs[0].distance.value)
+
+		  document.getElementById("est_co2_emm").innerHTML = calc_transit_emissions(travel_dist);
+		  
+		}
+	  }        
+      });	
+}
+
+	
+function autocomplete_inputs(){
+		
+		autocomplete_from = new google.maps.places.Autocomplete(document.getElementById("from"));
+		autocomplete_to = new google.maps.places.Autocomplete(document.getElementById("to"));
+		crsid = document.getElementById("crsid");
+		date = document.getElementById("date");
+		
+		// Add listeners
+		autocomplete_from.addListener('place_changed', route_changed);
+		autocomplete_to.addListener('place_changed', route_changed);
+		
+	
+		
+		crsid.addEventListener('change',meta_info_changed);
+		date.addEventListener('change', meta_info_changed);
+		}
+		
+		function route_changed(){
+			
+		var from_place = autocomplete_from.getPlace();
+		var to_place = autocomplete_to.getPlace();
+		
+		
+		if (!from_place.geometry){
+		// User did not select a valid place; reset the input feild
+		document.getElementById('from').placeholder = 'Origin';
+
+		} else {
+		//Display place details
+		from_id = from_place.place_id;
+		document.getElementById("inputted_origin").innerHTML = from_place.name;
+
+		
+		if (!to_place.geometry){
+		// User did not select a valid place; reset the input feild
+		document.getElementById('to').placeholder = 'Destination';
+		} else {
+		//Display place details
+		to_id = to_place.place_id;
+		document.getElementById("inputted_destination").innerHTML = to_place.name;
+
+		
+
+		
+		
+		display_route(from_id, to_id);
+
+		}}}				
+	
+		function meta_info_changed(){
+			
+		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
+		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
+		
+		
+}
+		
+function initMap(){
+
+
+autocomplete_inputs();
+
+}
+  
+ 
+	
