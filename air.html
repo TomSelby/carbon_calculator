@@ -17,15 +17,92 @@
   <center>
   <h1>CO2 Travel Emissions Calculator-Air</h1>
   </center>
-  </body>
+  
   <div id = "top-panel">
   <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a>
   </div>
-  
-  
+  <br>
+<center>
   <div>
-	<iframe src = 'https://en.wikipedia.org/wiki/Weimar_Republic'></iframe>
+
+  Please use the ICAO calculator found <a href="https://applications.icao.int/icec/Home/Index">here</a> then input your emissions below.
   </div>
  
+<br>
+<div>
+		
+		<div>
+		<input type="text" id="from" placeholder = "Origin", size='50'/>
+		</div>
+				
+		<div>
+		<input type="text" id="to" placeholder = "Destination", size='50'/>
+		</div>	
+		
+		<div>
+		<input type = "number" id = "calc_emmissions" placeholder = "Total passengers' CO2/journey (KG)", style="width: 28.5em"/>
+		</div>	
+<br>
+	
+	<b>CRSid: </b><input type ='text', id="crsid", placeholder="anon123">
+	<b>Date of Travel: </b><input type='date' id='date'>
+	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
+						 <option value = "Post-Doc">Post-Doc</option> 
+						 <option value = "PhD">PhD Student</option> 
+						 <option value = "Masters">Masters Student</option> 
+						 <option value = "Undergraduate">Undergraduate Student</option> </select>
+				
+	
+<br>
+<br>
 
+
+<div id="Submit Data">
+	<button type = "button" onclick="calc_route();">Submit Data</button>
+
+</div>
+</div>
+
+
+<div id="inputted_details">
+  <h3>Inputted Data</h3>
+	
+	<i>Origin: <b><span id="inputted_origin"></span></b></i>
+	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
+	<i>, CRSid: <b><span id="inputted_crsid"></span></b></i>
+	<i>, Date: <b><span id="inputted_date"></span></b></i>
+	<i>, Role: <b><span id="inputted_role"></span></b></i>
+
+ </div>
+  
+  
+
+</center>
+
+
+<script>
+date = document.getElementById("date");
+crsid = document.getElementById("crsid");
+role = document.getElementById("role");
+origin = document.getElementById("from");
+destination = document.getElementById("to");
+
+// Add listeners
+origin.addEventListener('change', info_changed);
+destination.addEventListener('change', info_changed);
+crsid.addEventListener('change', info_changed);
+date.addEventListener('change', info_changed);
+role.addEventListener('change', info_changed);
+
+
+
+function info_changed(){
+		document.getElementById("inputted_origin").innerHTML = document.getElementById("from").value;
+		document.getElementById("inputted_destination").innerHTML = document.getElementById("to").value;
+		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
+		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
+		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
+		}
+</script>
+</body>
  
