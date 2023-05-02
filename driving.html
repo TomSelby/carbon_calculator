@@ -53,7 +53,13 @@
 							  <option value = "Hybrid">Hybrid</option> 
 							  <option value = "Electric">Electric</option> </select>
 
-
+	
+	  <b> Car Size: </b>
+					<select id = 'car_size'> <option title = "Petrol/CN/LPG- up to 1.4 litre engine&#010;Diesel- up to 1.7 litre engine&#010Others- Guage of similar sized vehicles" value = "small">Small</option>
+											<option title = "Petrol/CN/LPG- from 1.4 to 2.0 litre engine&#010;Diesel- from 1.7 to 2.0 litre engine&#010Others- Guage of similar sized vehicles" value = "medium">Medium</option>
+											<option title = "Petrol/CN/LPG- above 2.0 litre engine&#010;Diesel- above 2.0 litre engine&#010Others- Guage of similar sized vehicles" value = "large">Large</option>
+											<option title = "Unknown engine size" value = "average">Average</option> </select>
+	
 	</center>
 <br>
 </div>
@@ -72,14 +78,15 @@
 	<i>, Traveler Number: <b><span id="inputted_traveler_num"></span></b></i>
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
 	<i>, Fuel Type: <b><span id="inputted_fuel"></span></b></i>
-
+	<i>, Car Size: <b><span id="inputted_size"></span></b></i>
+	
   </div>
 
 
 <div id="estimated_emissions">
 <h3>Estimated Emissions</h3>
 	<div>
-	<i>Travelled Distance: <b><span id="first_travel_dist"></span> + <span id = "second_travel_dist"></span> =  <span id = "total_dist"></span></b></i>
+	<i>Travelled Distance: <b><span id="first_travel_dist"></span> + <span id = "second_travel_dist"></span> =  <span id = "total_dist"></span> km</b></i>
 	</div>
 	<div>
 	<i>Estimated total kgs of CO2 Emitted: <b><span id="est_co2_emm"></span></b></i>
@@ -91,19 +98,65 @@
 
 <br>
 
+<div>
+<button id = "send">Submit Data</button>
+<script type = "module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-<div id="Submit Data">
-	<button type = "button" onclick="calc_route();">Submit Data</button>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg",
+    authDomain: "co2-calc-367923.firebaseapp.com",
+    databaseURL: "https://co2-calc-367923-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "co2-calc-367923",
+    storageBucket: "co2-calc-367923.appspot.com",
+    messagingSenderId: "102663905016",
+    appId: "1:102663905016:web:80ecdf2ec7115f42d8a50d",
+    measurementId: "G-KSH5ELJK7N"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+
+function InsertData(){
+  set(ref(db, String(Date.now())), {
+    crsid: document.getElementById("crsid").value,
+    date: document.getElementById("date").value,
+    num_of_travelers : document.getElementById("traveler_num").value,
+	role: document.getElementById("role").value,
+	fuel: document.getElementById("fuel_type").value,
+	car_size: document.getElementById("car_size").value,
+	origin: document.getElementById('from').value,
+	waypoint: document.getElementById('wp').value,
+	destination: document.getElementById('to').value,
+	distance: document.getElementById("total_dist").innerHTML,
+	total_co2:"23978"
+	})
+	.then(()=>{
+	alert("data sucessfully stored");
+	})
+	.catch((error)=>{
+	alert(error)
+	});
+}
+
+	var send_btn = document.getElementById("send");
+	send_btn.addEventListener('click', InsertData);
+
+</script>
+
 </div>
-</center>
+
+
 <br>
-  <div id ="test"></div> 
+
 
 
 
 	<!-- Load the API key-->
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg&libraries=places&callback=initMap&v=weekly">	  
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDstYdEvbcziyb2qrYeJdrW_WdQsCaEUtI&libraries=places&callback=initMap&v=weekly">	  
 	</script>
   </body>
 </html>
