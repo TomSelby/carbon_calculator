@@ -57,7 +57,7 @@ function display_route(from_id, to_id,wp_id){
 		let total_mins = Math.floor((total_time%3600)/60);
 		
 		document.getElementById("total_dist").innerHTML = total_distance/1000;
-		console.log(total_distance)
+		console.log(total_distance);
 
 		
 		}
@@ -124,9 +124,9 @@ async function route_changed(){
 
 		
 		
-		total_distance = display_route(from_id, to_id,wp_id);
+		display_route(from_id, to_id,wp_id);
 		
-		console.log(total_distance);
+		
 		// calcualte emissions
 		//calc_driving_emissions(total_dist,fuel_type,car_size);
 		
