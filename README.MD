@@ -1,4 +1,4 @@
-Very much work in progress here are 
+Very much work in progress, 
 Notes for improvement:
   1. Include some backend server side code to control API keys- atm just restricting the maps API key heavily and it is front facing.
   2. Make some stats using firebase realtime database on the homepage
