@@ -125,8 +125,8 @@ async function route_changed(){
 		
 		
 		total_distance = display_route(from_id, to_id,wp_id);
-		console.log("Waiting"); }, 5000);
-		console.log(total_distance)
+		
+		console.log(total_distance);
 		// calcualte emissions
 		//calc_driving_emissions(total_dist,fuel_type,car_size);
 		
