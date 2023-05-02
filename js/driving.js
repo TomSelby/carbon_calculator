@@ -1,18 +1,17 @@
-function calc_driving_emissions(distance,fuel_type){
-	var dist = distance/1000;
-	var kmpg = (35*1.609344);
-	var gallons_used = (dist)/(kmpg);
-	var liters_used = 4.5461*gallons_used
-	var co2_per_liters = 2.20904+0.59852;
-	var emissions = (liters_used)*(co2_per_liters);
-	return emissions;
+function calc_driving_emissions(distance,fuel_type,car_size){
+	
+	
+	
+	
 }
 	
 
 	
 
 	
-function display_route(from_id, to_id,wp_id,fuel_type){
+function display_route(from_id, to_id,wp_id){
+	
+	console.log('Display route called')
 	// Map set-up
 	const center = {lat:52.1951, lng:0.1313};
 	const options = {zoom:7, scaleControl:true, center:center};
@@ -38,7 +37,7 @@ function display_route(from_id, to_id,wp_id,fuel_type){
       } else {
       directionsRenderer.setDirections(response); // Add route to the map
 	  
-	  var directionsData0 = response.routes[0]; // Get data about the mapped route
+	  var directionsData0 =  response.routes[0]; // Get data about the mapped route
 	  
         if (!directionsData0) {
           window.alert('Directions request failed, transit fail');
@@ -46,16 +45,21 @@ function display_route(from_id, to_id,wp_id,fuel_type){
         }
 	
         else {
-          document.getElementById("first_travel_dist").innerHTML = directionsData0.legs[0].distance.text + " (" + directionsData0.legs[0].duration.text + ")";
-		  document.getElementById("second_travel_dist").innerHTML = directionsData0.legs[1].distance.text + " (" + directionsData0.legs[1].duration.text + ")";
-		  let total_dist = (directionsData0.legs[0].distance.value) + (directionsData0.legs[1].distance.value);
-		  let total_time = (directionsData0.legs[0].duration.value) + (directionsData0.legs[1].duration.value);
-		  let total_hours = Math.floor(total_time/3600);
-		  let total_mins = Math.floor((total_time%3600)/60);
-		  
-		  document.getElementById("total_dist").innerHTML = total_dist/1000 +" km"+ " (" + total_hours + " hours "+ total_mins+" mins).";
-		  document.getElementById("est_co2_emm").innerHTML = calc_driving_emissions(total_dist,fuel_type);
-		  
+		// Display the legs
+
+        document.getElementById("first_travel_dist").innerHTML = directionsData0.legs[0].distance.text + " (" + directionsData0.legs[0].duration.text + ")";
+		document.getElementById("second_travel_dist").innerHTML = directionsData0.legs[1].distance.text + " (" + directionsData0.legs[1].duration.text + ")";
+		// Display the totals
+
+		var total_distance = directionsData0.legs[0].distance.value + directionsData0.legs[1].distance.value;
+		let total_time = directionsData0.legs[0].duration.value + directionsData0.legs[1].duration.value;
+		let total_hours = Math.floor(total_time/3600);
+		let total_mins = Math.floor((total_time%3600)/60);
+		
+		document.getElementById("total_dist").innerHTML = total_distance/1000;
+		console.log(total_distance)
+
+		
 		}
 	  }        
       });	
@@ -69,11 +73,11 @@ function autocomplete_inputs(){
 		autocomplete_wp = new google.maps.places.Autocomplete(document.getElementById("wp"))
 		
 		traveler_num = document.getElementById("traveler_num");
-		mpg_of_car = document.getElementById("car_mpg");
 		crsid = document.getElementById("crsid");
 		date = document.getElementById("date");
 		role = document.getElementById("role");
 		fuel_type = document.getElementById("fuel_type");
+		car_size = document.getElementById("car_size");
 				
 		// Add listeners
 		autocomplete_from.addListener('place_changed', route_changed);
@@ -81,17 +85,16 @@ function autocomplete_inputs(){
 		autocomplete_wp.addListener('place_changed',route_changed);
 		
 		
-		traveler_num.addEventListener('change', route_changed);		
 		traveler_num.addEventListener('change', meta_info_changed);
 		crsid.addEventListener('change',meta_info_changed);
 		date.addEventListener('change', meta_info_changed);
 		role.addEventListener('change', meta_info_changed);
 		fuel_type.addEventListener('change', meta_info_changed);
-
+		car_size.addEventListener('change', meta_info_changed);
 		}
 		
-		function route_changed(){
-			
+async function route_changed(){
+		console.log("Route changed called");
 		var from_place = autocomplete_from.getPlace();
 		var to_place = autocomplete_to.getPlace();
 		var wp_place = autocomplete_wp.getPlace();
@@ -120,11 +123,14 @@ function autocomplete_inputs(){
 		document.getElementById("inputted_destination").innerHTML = to_place.name;
 
 		
-
+		
+		total_distance = display_route(from_id, to_id,wp_id);
+		console.log("Waiting"); }, 5000);
+		console.log(total_distance)
+		// calcualte emissions
+		//calc_driving_emissions(total_dist,fuel_type,car_size);
 		
 		
-		display_route(from_id, to_id,wp_id,document.getElementById("fuel_type").innerHTML);
-
 		}}}				
 }	
 		function meta_info_changed(){
@@ -134,7 +140,10 @@ function autocomplete_inputs(){
 		document.getElementById("inputted_traveler_num").innerHTML = document.getElementById("traveler_num").value;
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_fuel").innerHTML = document.getElementById("fuel_type").value;
+		document.getElementById("inputted_size").innerHTML = document.getElementById("car_size").value;
 
+
+		// calcualte emissions
 		
 }
 		
