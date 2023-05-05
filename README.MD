@@ -10,3 +10,4 @@ Notes for improvement:
   8. Manage firebase rules
   9. Give the option of multiple routes
   10. Include data for motorbikes
+  11. Include more fuel types like plug-in hybrid, CNG, LPG etc for driving
