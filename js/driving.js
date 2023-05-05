@@ -1,12 +1,18 @@
 function calc_driving_emissions(distance,fuel_type,car_size){
+fetch("./driving_calibrations.json")
+.then(response => {
+   return response.json();
+})
+.then(data => console.log(data));
 	
 	
+//calibrations = JSON.parse(data);
+//console.log(distance, fuel_type.value, car_size.value, calibrations.petrol[0]);
 	
-	
+document.getElementById("est_co2_emm").innerHTML = distance
 }
 	
 
-	
 
 	
 function display_route(from_id, to_id,wp_id){
@@ -57,9 +63,9 @@ function display_route(from_id, to_id,wp_id){
 		let total_mins = Math.floor((total_time%3600)/60);
 		
 		document.getElementById("total_dist").innerHTML = total_distance/1000;
-		console.log(total_distance);
-
 		
+
+		calc_driving_emissions(total_distance,document.getElementById("fuel_type"),document.getElementById("car_size"))
 		}
 	  }        
       });	
@@ -147,6 +153,8 @@ async function route_changed(){
 		
 }
 		
+		
+
 function initMap(){
 autocomplete_inputs();
 }
