@@ -3,12 +3,12 @@ fetch("./driving_calibrations.json")
 .then(response => {
    return response.json();
 })
-.then(data => console.log(data[fuel_type.value][0]));
-	
-
-	
-document.getElementById("est_co2_emm").innerHTML = distance
-}
+.then(data => {
+	const emissions = data[fuel_type.value][car_size.value];
+	console.log("Estimated_emissions")
+	console.log(emissions);
+	document.getElementById("est_co2_emm").innerHTML = emissions
+})}
 	
 
 
