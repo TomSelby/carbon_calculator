@@ -91,9 +91,7 @@
 	<div>
 	<i>Estimated total kgs of CO2 Emitted: <b><span id="est_co2_emm"></span></b></i>
 	</div>
-	<div>
-	<i>Estimated kgs of CO2 Emitted per person: <b><span id="est_co2_emm_pp"></span></b></i>
-	</div>
+	
 </div>
 
 <br>
@@ -131,7 +129,7 @@ function InsertData(){
 	waypoint: document.getElementById('wp').value,
 	destination: document.getElementById('to').value,
 	distance: document.getElementById("total_dist").innerHTML,
-	total_co2:"23978"
+	total_co2:document.getElementById("est_co2_emm").innerHTML
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
