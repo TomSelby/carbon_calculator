@@ -3,7 +3,7 @@ fetch("./driving_calibrations.json")
 .then(response => {
    return response.json();
 })
-.then(data => console.log(data[fuel_type][0]));
+.then(data => console.log(data[fuel_type.value][0]));
 	
 	
 //calibrations = JSON.parse(data);
