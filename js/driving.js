@@ -4,10 +4,10 @@ fetch("./driving_calibrations.json")
    return response.json();
 })
 .then(data => {
-	const emissions = data[fuel_type.value][car_size.value];
+	const emissions = data[fuel_type.value][car_size.value]*distance;
 	console.log("Estimated_emissions")
 	console.log(emissions);
-	document.getElementById("est_co2_emm").innerHTML = emissions
+	document.getElementById("est_co2_emm").innerHTML = Math.round(emissions);
 })}
 	
 
