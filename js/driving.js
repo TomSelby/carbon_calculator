@@ -5,9 +5,7 @@ fetch("./driving_calibrations.json")
 })
 .then(data => console.log(data[fuel_type.value][0]));
 	
-	
-//calibrations = JSON.parse(data);
-//console.log(distance, fuel_type.value, car_size.value, calibrations.petrol[0]);
+
 	
 document.getElementById("est_co2_emm").innerHTML = distance
 }
