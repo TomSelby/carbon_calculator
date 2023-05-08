@@ -63,7 +63,7 @@ function display_route(from_id, to_id,wp_id){
 		document.getElementById("total_dist").innerHTML = total_distance/1000;
 		
 
-		calc_driving_emissions(total_distance,document.getElementById("fuel_type"),document.getElementById("car_size"))
+		calc_driving_emissions(total_distance/1000,document.getElementById("fuel_type"),document.getElementById("car_size"))
 		}
 	  }        
       });	
@@ -146,16 +146,12 @@ async function route_changed(){
 		document.getElementById("inputted_fuel").innerHTML = document.getElementById("fuel_type").value;
 		document.getElementById("inputted_size").innerHTML = ["Small", "Medium", "Large", "Average"][document.getElementById("car_size").value];
 
+		calc_driving_emissions(document.getElementById("total_dist").innerHTML,document.getElementById("fuel_type"),document.getElementById("car_size"))
 
-		// calcualte emissions
+		
 		
 }
-		
-		
 
 function initMap(){
 autocomplete_inputs();
 }
-  
- 
-	
