@@ -140,11 +140,11 @@ async function route_changed(){
 		function meta_info_changed(){
 			
 		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
-		document.getElementById("inputted_crsid").innerHTML = ["Small", "Medium", "Large", "Average"][document.getElementById("crsid").value];
+		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
 		document.getElementById("inputted_traveler_num").innerHTML = document.getElementById("traveler_num").value;
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_fuel").innerHTML = document.getElementById("fuel_type").value;
-		document.getElementById("inputted_size").innerHTML = document.getElementById("car_size").value;
+		document.getElementById("inputted_size").innerHTML = ["Small", "Medium", "Large", "Average"][document.getElementById("car_size").value];
 
 
 		// calcualte emissions
