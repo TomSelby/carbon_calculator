@@ -9,7 +9,6 @@
 <title>Travel Carbon Emissions Calculator</title>
 <link rel="stylesheet" type ="text/css" href = "css/style.css"/>
 
-<script src="js/script.js"></script>
 
 </head>
   <body>
@@ -25,7 +24,7 @@
 <center>
   <div>
 
-  Please use the ICAO calculator found <a href="https://applications.icao.int/icec/Home/Index">here</a> then input your emissions below.
+  Please use the ICAO calculator found <a href="https://applications.icao.int/icec/Home/Index" target="_blank">here</a> then input your emissions below.
   </div>
  
 <br>
@@ -40,11 +39,15 @@
 		</div>	
 		
 		<div>
-		<input type = "number" id = "emmissions" placeholder = "Total passengers' CO2/journey (KG)", style="width: 28.5em"/>
+		<input type = "number" id = "emmissions" placeholder = "Total passengers' CO2/journey (kg)", style="width: 28.5em"/>
+		</div>
+		<div>
+		<input type = "number" id = "distance" placeholder = "Distance travelled (km)", style="width: 28.5em"/>
 		</div>	
 <br>
 	
 	<b>CRSid: </b><input type ='text', id="crsid", placeholder="anon123">
+	
 	<b>Date of Travel: </b><input type='date' id='date'>
 	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
 						 <option value = "Post-Doc">Post-Doc</option> 
@@ -66,6 +69,8 @@
 	<i>Origin: <b><span id="inputted_origin"></span></b></i>
 	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
 	<i>, CO2/journey (kg): <b><span id = "inputted_emissions"></span></b></i>
+	<i>, Distance (km): <b><span id = "inputted_distance"></span></b></i>
+
 	<i>, CRSid: <b><span id="inputted_crsid"></span></b></i>
 	<i>, Date: <b><span id="inputted_date"></span></b></i>
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
@@ -73,8 +78,50 @@
  </div>
  <br>
  <div id="Submit Data">
-	<button type = "button" onclick="calc_route();">Submit Data</button>
+<button id = "send">Submit Data</button>
+	<script type = "module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg",
+    authDomain: "co2-calc-367923.firebaseapp.com",
+    databaseURL: "https://co2-calc-367923-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "co2-calc-367923",
+    storageBucket: "co2-calc-367923.appspot.com",
+    messagingSenderId: "102663905016",
+    appId: "1:102663905016:web:80ecdf2ec7115f42d8a50d",
+    measurementId: "G-KSH5ELJK7N"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+
+function InsertData(){
+  set(ref(db, String(Date.now())), {
+	method: 'air',
+    crsid: document.getElementById("crsid").value,
+    date: document.getElementById("date").value,
+	role: document.getElementById("role").value,
+	origin: document.getElementById('from').value,
+	destination: document.getElementById('to').value,
+	distance: document.getElementById("distance").value,
+	total_co2: document.getElementById("emmissions").value
+	})
+	.then(()=>{
+	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
+	location.reload()
+	})
+	.catch((error)=>{
+	alert(error)
+	});
+}
+
+	var send_btn = document.getElementById("send");
+	send_btn.addEventListener('click', InsertData);
+
+</script>
 </div>
 
 </center>
@@ -87,7 +134,7 @@ role = document.getElementById("role");
 origin = document.getElementById("from");
 destination = document.getElementById("to");
 emissions = document.getElementById("emmissions");
-
+distance = document.getElementById("distance");
 // Add listeners
 origin.addEventListener('change', info_changed);
 destination.addEventListener('change', info_changed);
@@ -95,7 +142,7 @@ crsid.addEventListener('change', info_changed);
 date.addEventListener('change', info_changed);
 role.addEventListener('change', info_changed);
 emissions.addEventListener('change', info_changed);
-
+distance.addEventListener('change', info_changed);
 
 function info_changed(){
 		document.getElementById("inputted_origin").innerHTML = document.getElementById("from").value;
@@ -104,6 +151,7 @@ function info_changed(){
 		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_emissions").innerHTML = document.getElementById("emmissions").value;
+		document.getElementById("inputted_distance").innerHTML = document.getElementById("distance").value;
 		}
 </script>
 </body>

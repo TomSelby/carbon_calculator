@@ -6,7 +6,7 @@
 <meta http-equiv ="X-UA-Compatible" content="ie=edge">
 <title>Travel Carbon Emissions Calculator</title>
 <link rel="stylesheet" type ="text/css" href = "css/style.css"/>
-
+<script type="module" src="js/index.js"></script>
 
 
 </head>
@@ -14,11 +14,21 @@
   <center>
   <h1>CO2 Travel Emissions Calculator</h1>
   </center>
-  </body>
+  
   <div id = "top-panel">
   <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a>
   </div>
   
   <div>
-  ***** Some information about how everything is calculated and instructuions on how to use, and storage of data thing*****
+  ***** Some information about how everything is calculated, instructuions on how to use, some realtime statistics about the co2 usage, the storage of private data*****
   </div>
+  <div id="emissions_chartDiv" style="width:80%; height:300px; margin:0 auto;"></div>
+  <div id="distance_chartDiv" style="width:80%; height:300px; margin:0 auto;"></div>
+  <div id="donut_chartDiv" style="width:80%; height:300px; margin:0 auto;"></div>
+
+  </body>
+  
+  <script src = "https://code.jscharting.com/2.9.0/jscharting.js"></script>
+
+
+  </html>

@@ -119,6 +119,7 @@ import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1
 
 function InsertData(){
   set(ref(db, String(Date.now())), {
+	method: 'driving',
     crsid: document.getElementById("crsid").value,
     date: document.getElementById("date").value,
     num_of_travelers : document.getElementById("traveler_num").value,
