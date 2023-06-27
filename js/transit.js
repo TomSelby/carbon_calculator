@@ -1,5 +1,5 @@
-function calc_transit_emissions(route){
-	console.log(route);
+function calc_transit_emissions(route,return_j){
+	console.log(return_j);
 	total_emissions = 0
 	for (let i =0; i < route.length; i++){
 		var travel_method = route[i]['instructions'].charAt(0);
@@ -19,15 +19,20 @@ function calc_transit_emissions(route){
 			console.log('Underground');
 		}
 		else if (travel_method == 'F'){
-			total_emissions = total_emissions +0.11286*distance
+			total_emissions = total_emissions + 0.11286*distance
 			console.log('Ferry')
 		}
+				
+				
+		if (return_j == true){
+			console.log('poii')
+			total_emissions = total_emissions*2;
 			
-	
-		
+		}
 	}
 	
-	return total_emissions;
+	document.getElementById("est_co2_emm").innerHTML = Math.round(total_emissions);
+
 };
 	
 function display_route(from_id, to_id){
@@ -60,10 +65,11 @@ function display_route(from_id, to_id){
         }
 	
         else {
-		var route = directionsData0['legs']['0']['steps'];
-        document.getElementById("travel_dist").innerHTML = directionsData0.legs[0].distance.text + " (" + directionsData0.legs[0].duration.text + ")";
+		route = directionsData0['legs']['0']['steps'];
+		console.log(route);
+        document.getElementById("travel_dist").innerHTML = directionsData0.legs[0].distance.value/1000; // can also have .duration
 		let travel_dist = (directionsData0.legs[0].distance.value)
-		document.getElementById("est_co2_emm").innerHTML = calc_transit_emissions(route);
+		calc_transit_emissions(route,document.getElementById("return_j").checked);
 		  
 		}
 	  }        
@@ -77,7 +83,8 @@ function autocomplete_inputs(){
 		autocomplete_to = new google.maps.places.Autocomplete(document.getElementById("to"));
 		crsid = document.getElementById("crsid");
 		date = document.getElementById("date");
-		
+		role = document.getElementById("role");
+		return_j = document.getElementById("return_j");
 		// Add listeners
 		autocomplete_from.addListener('place_changed', route_changed);
 		autocomplete_to.addListener('place_changed', route_changed);
@@ -86,6 +93,8 @@ function autocomplete_inputs(){
 		
 		crsid.addEventListener('change',meta_info_changed);
 		date.addEventListener('change', meta_info_changed);
+		role.addEventListener('change', meta_info_changed);
+		return_j.addEventListener('change', meta_info_changed);
 		}
 		
 		function route_changed(){
@@ -124,8 +133,10 @@ function autocomplete_inputs(){
 			
 		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
 		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
+		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
+		document.getElementById("inputted_return").innerHTML = document.getElementById("return_j").checked;
 		
-		
+		calc_transit_emissions(route,document.getElementById("return_j").checked);
 }
 		
 function initMap(){

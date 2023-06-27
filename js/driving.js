@@ -1,13 +1,19 @@
-function calc_driving_emissions(distance,fuel_type,car_size){
+function calc_driving_emissions(distance,fuel_type,car_size,return_j){
 fetch("./driving_calibrations.json")
 .then(response => {
    return response.json();
 })
 .then(data => {
-	const emissions = data[fuel_type.value][car_size.value]*distance;
+	var emissions = data[fuel_type.value][car_size.value]*distance;
+	console.log(return_j);
+	if (return_j == true){
+		emissions = emissions*2;
+		
+	}
 	console.log("Estimated_emissions")
 	console.log(emissions);
 	document.getElementById("est_co2_emm").innerHTML = Math.round(emissions);
+	
 })}
 	
 
@@ -82,6 +88,7 @@ function autocomplete_inputs(){
 		role = document.getElementById("role");
 		fuel_type = document.getElementById("fuel_type");
 		car_size = document.getElementById("car_size");
+		return_j = document.getElementById("return_j");
 				
 		// Add listeners
 		autocomplete_from.addListener('place_changed', route_changed);
@@ -95,6 +102,7 @@ function autocomplete_inputs(){
 		role.addEventListener('change', meta_info_changed);
 		fuel_type.addEventListener('change', meta_info_changed);
 		car_size.addEventListener('change', meta_info_changed);
+		return_j.addEventListener('change', meta_info_changed);
 		}
 		
 async function route_changed(){
@@ -145,8 +153,10 @@ async function route_changed(){
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_fuel").innerHTML = document.getElementById("fuel_type").value;
 		document.getElementById("inputted_size").innerHTML = ["Small", "Medium", "Large", "Average"][document.getElementById("car_size").value];
-
-		calc_driving_emissions(document.getElementById("total_dist").innerHTML,document.getElementById("fuel_type"),document.getElementById("car_size"))
+		document.getElementById("inputted_return").innerHTML = document.getElementById("return_j").checked;
+		
+		
+		calc_driving_emissions(document.getElementById("total_dist").innerHTML,document.getElementById("fuel_type"),document.getElementById("car_size"),document.getElementById("return_j").checked)
 
 		
 		
