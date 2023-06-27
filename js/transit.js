@@ -1,12 +1,34 @@
-function calc_transit_emissions(distance){
-	var dist = distance/1000;
-	var kmpg = (35*1.609344);
-	var gallons_used = (dist)/(kmpg);
-	var liters_used = 4.5461*gallons_used
-	var co2_per_liters = 2.20904+0.59852;
-	var emissions = (liters_used)*(co2_per_liters);
-	return emissions;
-}
+function calc_transit_emissions(route){
+	console.log(route);
+	total_emissions = 0
+	for (let i =0; i < route.length; i++){
+		var travel_method = route[i]['instructions'].charAt(0);
+		var distance = route[i]['distance'].value/1000;
+	
+		if (travel_method == 'B'){
+			total_emissions =total_emissions + 0.0965*distance
+			console.log('Bus');
+			
+		}else if (travel_method == 'T'){
+			total_emissions =total_emissions + 0.03549*distance
+
+			console.log('Train');
+			
+		}else if (travel_method == 'U'){
+			total_emissions =total_emissions + 0.02781*distance
+			console.log('Underground');
+		}
+		else if (travel_method == 'F'){
+			total_emissions = total_emissions +0.11286*distance
+			console.log('Ferry')
+		}
+			
+	
+		
+	}
+	
+	return total_emissions;
+};
 	
 function display_route(from_id, to_id){
 	// Map set-up
@@ -38,10 +60,10 @@ function display_route(from_id, to_id){
         }
 	
         else {
-          document.getElementById("travel_dist").innerHTML = directionsData0.legs[0].distance.text + " (" + directionsData0.legs[0].duration.text + ")";
-		  let travel_dist = (directionsData0.legs[0].distance.value)
-
-		  document.getElementById("est_co2_emm").innerHTML = calc_transit_emissions(travel_dist);
+		var route = directionsData0['legs']['0']['steps'];
+        document.getElementById("travel_dist").innerHTML = directionsData0.legs[0].distance.text + " (" + directionsData0.legs[0].duration.text + ")";
+		let travel_dist = (directionsData0.legs[0].distance.value)
+		document.getElementById("est_co2_emm").innerHTML = calc_transit_emissions(route);
 		  
 		}
 	  }        
