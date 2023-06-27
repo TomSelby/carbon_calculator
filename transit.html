@@ -66,12 +66,50 @@
 
 
 <div id="Submit Data">
-	<button type = "button" onclick="calc_route();">Submit Data</button>
-</div>
-</center>
-<br>
+<button id = "send">Submit Data</button>
+	<script type = "module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-<div id ="test"></div> 
+  const firebaseConfig = {
+    apiKey: "AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg",
+    authDomain: "co2-calc-367923.firebaseapp.com",
+    databaseURL: "https://co2-calc-367923-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "co2-calc-367923",
+    storageBucket: "co2-calc-367923.appspot.com",
+    messagingSenderId: "102663905016",
+    appId: "1:102663905016:web:80ecdf2ec7115f42d8a50d",
+    measurementId: "G-KSH5ELJK7N"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+
+function InsertData(){
+  set(ref(db, String(Date.now())), {
+	method: 'transit',
+    crsid: document.getElementById("crsid").value,
+    date: document.getElementById("date").value,
+	origin: document.getElementById('from').value,
+	destination: document.getElementById('to').value,
+	distance: document.getElementById("travel_dist").innerHTML,
+	total_co2: document.getElementById("est_co2_emm").innerHTML
+	})
+	.then(()=>{
+	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
+	location.reload()
+	})
+	.catch((error)=>{
+	alert(error)
+	});
+}
+
+	var send_btn = document.getElementById("send");
+	send_btn.addEventListener('click', InsertData);
+
+</script>
+</div>
 
 
 
@@ -81,6 +119,3 @@
 	</script>
   </body>
 </html>
-
-
-
