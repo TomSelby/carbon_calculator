@@ -60,6 +60,8 @@
 											<option title = "Petrol/CN/LPG- above 2.0 litre engine&#010;Diesel- above 2.0 litre engine&#010Others- Guage of similar sized vehicles" value = 2>Large</option>
 											<option title = "Unknown engine size" value = 3>Average</option> </select>
 	
+	
+	<b> Return Journey:</b><input type="checkbox" id="return_j">
 	</center>
 <br>
 </div>
@@ -79,6 +81,7 @@
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
 	<i>, Fuel Type: <b><span id="inputted_fuel"></span></b></i>
 	<i>, Car Size: <b><span id="inputted_size"></span></b></i>
+	<i>, Return Journey: <b><span id ="inputted_return"></span></b></i>
 	
   </div>
 
@@ -130,7 +133,8 @@ function InsertData(){
 	waypoint: document.getElementById('wp').value,
 	destination: document.getElementById('to').value,
 	distance: document.getElementById("total_dist").innerHTML,
-	total_co2:document.getElementById("est_co2_emm").innerHTML
+	total_co2:document.getElementById("est_co2_emm").innerHTML,
+	return_journey:document.getElementById('return_j').checked
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");

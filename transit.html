@@ -34,6 +34,12 @@
 	
 	<b>CRSid: </b><input type ='text', id="crsid", placeholder="anon123">
 	<b>Date of Travel: </b><input type='date' id='date'>
+	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
+						 <option value = "Post-Doc">Post-Doc</option> 
+						 <option value = "PhD">PhD Student</option> 
+						 <option value = "Masters">Masters Student</option> 
+						 <option value = "Undergraduate">Undergraduate Student</option> </select>
+	<b> Return Journey:</b><input type="checkbox" id="return_j">
 	</center>
 <br>
 </div>
@@ -49,13 +55,16 @@
 	<i>, Origin: <b><span id="inputted_origin"></span></b></i>
 	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
 	<i>, Date: <b><span id="inputted_date"></span></b></i>
+	<i>, Role: <b><span id="inputted_role"></span></b></i>
+	<i>, Return Journey: <b><span id ="inputted_return"></span></b></i>
+
   </div>
 
 
 <div id="estimated_emissions">
 <h3>Estimated Emissions</h3>
 	<div>
-	<i>Travelled Distance: <b><span id="travel_dist"></span></b></i>
+	<i>Travelled Distance: <b><span id="travel_dist"></span> km </b></i>
 	</div>
 	<div>
 	<i>Estimated total kgs of CO2 Emitted: <b><span id="est_co2_emm"></span></b></i>
@@ -95,6 +104,7 @@ function InsertData(){
 	destination: document.getElementById('to').value,
 	distance: document.getElementById("travel_dist").innerHTML,
 	total_co2: document.getElementById("est_co2_emm").innerHTML
+	return_journey:document.getElementById('return_j').checked
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
@@ -110,6 +120,7 @@ function InsertData(){
 
 </script>
 </div>
+<br>
 
 
 

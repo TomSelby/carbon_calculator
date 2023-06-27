@@ -19,16 +19,24 @@
   <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a>
   </div>
   
-  <div>
-  ***** Some information about how everything is calculated, instructuions on how to use, some realtime statistics about the co2 usage, the storage of private data*****
+  <div id = "introduction">
+	<br>
+  Welcome to the <a href="https://www.stranks.oe.phy.cam.ac.uk/" target="_blank">StranksLab</a> travel emissions calculator, this is where we aim to calculate and record travel emissions from none day-to-day travel. Please use the links above to navigate between pages before calculating and submitting your estimations.<br><br>
+  The graphs and charts below will be updated periodically as the database is populated, all data submitted is stored securley and only accessible by me (Tom, tas72@cam.ac.uk) however if you wish to remain annonmous please just leave the crsid section blank.<br><br>
+  The method for calculating emissions is based off the UK government's  <a href="https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting" target="_blank">conversion factors for the reporting of greenhouse emissions</a> and the <a href="https://applications.icao.int/icec/Home/Index" target="_blank">ICAO carbon emissions calculator for air travel.</a> All code can be found on <a href="https://github.com/TomSelby/carbon_calculator/tree/main" target="_blank">Github</a>.<br>
+  
   </div>
-  <div id="emissions_chartDiv" style="width:80%; height:300px; margin:0 auto;"></div>
-  <div id="distance_chartDiv" style="width:80%; height:300px; margin:0 auto;"></div>
-  <div id="donut_chartDiv" style="width:80%; height:300px; margin:0 auto;"></div>
+  <center>
+  <div id=chartDiv" style="width:80%; height:300px; margin:0 auto;">
+  <img src='groups.png' alt = 'Emissions by group' width="800" height="500">
+  <img src='overtime.png' alt = 'Emissions by group' width="800" height="500">
+  </center>
+  
+  </div>
 
   </body>
   
-  <script src = "https://code.jscharting.com/2.9.0/jscharting.js"></script>
+  
 
 
   </html>
