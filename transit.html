@@ -12,11 +12,11 @@
 </head>
   <body>
   <center>
-  <h1>CO2 Travel Emissions Calculator- Public Transport</h1>
+  <h1>CO2 Travel Emissions Calculator-Transit</h1>
   </center>
   </body>
   <div id = "top-panel">
-  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a>
+  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a><br><a href = "manual.html">Manual</a>
   </div>
   
  
@@ -38,7 +38,12 @@
 						 <option value = "Post-Doc">Post-Doc</option> 
 						 <option value = "PhD">PhD Student</option> 
 						 <option value = "Masters">Masters Student</option> 
-						 <option value = "Undergraduate">Undergraduate Student</option> </select>
+						 <option value = "Undergraduate">Undergraduate Student</option> 
+						 <option value = "Other">Other</option> </select>
+						 
+						 
+						 
+						 
 	<b> Return Journey:</b><input type="checkbox" id="return_j">
 	</center>
 <br>
@@ -97,6 +102,7 @@ import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1
 
 function InsertData(){
   set(ref(db, String(Date.now())), {
+    manual_input: 'false',
 	method: 'transit',
     crsid: document.getElementById("crsid").value,
     date: document.getElementById("date").value,

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,102 +9,77 @@
 <title>Travel Carbon Emissions Calculator</title>
 <link rel="stylesheet" type ="text/css" href = "css/style.css"/>
 
-<script src="js/driving.js"></script>
 
 </head>
   <body>
+
   <center>
-  <h1>CO2 Travel Emissions Calculator- Driving</h1>
+  <h1>CO2 Travel Emissions Calculator-Manual</h1>
   </center>
-  </body>
+  
   <div id = "top-panel">
   <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a><br><a href = "manual.html">Manual</a>
   </div>
-  
-  
   <br>
-    
+<center>
+ 
+
 <div>
-	<center>
+		
 		<div>
 		<input type="text" id="from" placeholder = "Origin", size='50'/>
 		</div>
-		<div>
-		<input type="text" id="wp" placeholder = "Waypoint", size='50'/>
-		</div>
-		
+				
 		<div>
 		<input type="text" id="to" placeholder = "Destination", size='50'/>
-
 		</div>	
-	
-	
+		
+		<div>
+		<input type = "number" id = "emmissions" placeholder = "Total emissions CO2eq (kg)", style="width: 28.5em"/>
+		</div>
+		<div>
+		<input type = "number" id = "distance" placeholder = "Distance travelled (km)", style="width: 28.5em"/>
+		</div>	
 <br>
 	
 	<b>CRSid: </b><input type ='text', id="crsid", placeholder="anon123">
 	<b>Date of Travel: </b><input type='date' id='date'>
-	<b>Number of Travelers: </b><input type="number" min="1" id="traveler_num"/>
 	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
 						 <option value = "Post-Doc">Post-Doc</option> 
 						 <option value = "PhD">PhD Student</option> 
 						 <option value = "Masters">Masters Student</option> 
-						 <option value = "Undergraduate">Undergraduate Student</option>
+						 <option value = "Undergraduate">Undergraduate Student</option> 
 						 <option value = "Other">Other</option> </select>
-				
-	<b>Fuel Type: </b><select id = 'fuel_type'><option value = "petrol">Petrol</option> 
-							  <option value = "diesel">Diesel</option> 
-							  <option value = "hybrid">Hybrid</option> 
-							  <option value = "electric">Electric</option> </select>
-
+						 
+	<b>Travel Method: </b><select id = 'method'>
+						<option value = "driving">Car</option> 
+						 <option value = "transit">Public Transport</option> 
+						 <option value = "air">Plane</option></select>
 	
-	  <b> Car Size: </b>
-					<select id = 'car_size'> <option title = "Petrol/CN/LPG- up to 1.4 litre engine&#010;Diesel- up to 1.7 litre engine&#010Others- Guage of similar sized vehicles" value = 0>Small</option>
-											<option title = "Petrol/CN/LPG- from 1.4 to 2.0 litre engine&#010;Diesel- from 1.7 to 2.0 litre engine&#010Others- Guage of similar sized vehicles" value = 1>Medium</option>
-											<option title = "Petrol/CN/LPG- above 2.0 litre engine&#010;Diesel- above 2.0 litre engine&#010Others- Guage of similar sized vehicles" value = 2>Large</option>
-											<option title = "Unknown engine size" value = 3>Average</option> </select>
-	
-	
-	<b> Return Journey:</b><input type="checkbox" id="return_j">
-	</center>
 <br>
+
+
+
 </div>
 
-<div id="map"></div>
 
-
-<center>
-  <div id="inputted_details">
+<div id="inputted_details">
   <h3>Inputted Data</h3>
 	
 	<i>Origin: <b><span id="inputted_origin"></span></b></i>
 	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
+	<i>, CO2eq (kg): <b><span id = "inputted_emissions"></span></b></i>
+	<i>, Distance (km): <b><span id = "inputted_distance"></span></b></i>
+
 	<i>, CRSid: <b><span id="inputted_crsid"></span></b></i>
 	<i>, Date: <b><span id="inputted_date"></span></b></i>
-	<i>, Traveler Number: <b><span id="inputted_traveler_num"></span></b></i>
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
-	<i>, Fuel Type: <b><span id="inputted_fuel"></span></b></i>
-	<i>, Car Size: <b><span id="inputted_size"></span></b></i>
-	<i>, Return Journey: <b><span id ="inputted_return"></span></b></i>
-	
-  </div>
-
-
-<div id="estimated_emissions">
-<h3>Estimated Emissions</h3>
-	<div>
-	<i>Travelled Distance: <b><span id="first_travel_dist"></span> + <span id = "second_travel_dist"></span> =  <span id = "total_dist"></span> km</b></i>
-	</div>
-	<div>
-	<i>Estimated total kgs of CO2-eq Emitted: <b><span id="est_co2_emm"></span></b></i>
-	</div>
-	
-</div>
-
-<br>
-
-<div>
+	<i>, Travel Method: <b><span id ="inputted_method"></span></b></i>
+ </div>
+ <br>
+ <div id="Submit Data">
 <button id = "send">Submit Data</button>
-<script type = "module">
+	<script type = "module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
@@ -123,20 +100,15 @@ import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1
 
 function InsertData(){
   set(ref(db, String(Date.now())), {
-    manual_input: 'false',
-	method: 'driving',
+	manual_input: 'true',
+	method: document.getElementById("method").value,
     crsid: document.getElementById("crsid").value,
     date: document.getElementById("date").value,
-    num_of_travelers : document.getElementById("traveler_num").value,
 	role: document.getElementById("role").value,
-	fuel: document.getElementById("fuel_type").value,
-	car_size: document.getElementById("car_size").value,
 	origin: document.getElementById('from').value,
-	waypoint: document.getElementById('wp').value,
 	destination: document.getElementById('to').value,
-	distance: document.getElementById("total_dist").innerHTML,
-	total_co2:document.getElementById("est_co2_emm").innerHTML,
-	return_journey:document.getElementById('return_j').checked
+	distance: document.getElementById("distance").value,
+	total_co2: document.getElementById("emmissions").value
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
@@ -151,18 +123,40 @@ function InsertData(){
 	send_btn.addEventListener('click', InsertData);
 
 </script>
-
 </div>
 
-
-<br>
-
+</center>
 
 
+<script>
+date = document.getElementById("date");
+crsid = document.getElementById("crsid");
+role = document.getElementById("role");
+origin = document.getElementById("from");
+destination = document.getElementById("to");
+emissions = document.getElementById("emmissions");
+distance = document.getElementById("distance");
+travel_mode = document.getElementById("method");
+// Add listeners
+origin.addEventListener('change', info_changed);
+destination.addEventListener('change', info_changed);
+crsid.addEventListener('change', info_changed);
+date.addEventListener('change', info_changed);
+role.addEventListener('change', info_changed);
+emissions.addEventListener('change', info_changed);
+distance.addEventListener('change', info_changed);
+travel_mode.addEventListener('change', info_changed);
 
-	<!-- Load the API key-->
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD05bky4dBxfyQlRaFVRrW-jAqs-x9gp9k&libraries=places&callback=initMap&v=weekly">	  
-	</script>
-  </body>
-</html>
+function info_changed(){
+		document.getElementById("inputted_origin").innerHTML = document.getElementById("from").value;
+		document.getElementById("inputted_destination").innerHTML = document.getElementById("to").value;
+		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
+		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
+		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
+		document.getElementById("inputted_emissions").innerHTML = document.getElementById("emmissions").value;
+		document.getElementById("inputted_distance").innerHTML = document.getElementById("distance").value;
+		document.getElementById("inputted_method").innerHTML = document.getElementById("method").value;
+		}
+</script>
+</body>
+ 
