@@ -1,4 +1,5 @@
 function calc_driving_emissions(distance,fuel_type,car_size,return_j){
+	
 fetch("./driving_calibrations.json")
 .then(response => {
    return response.json();
@@ -8,8 +9,8 @@ fetch("./driving_calibrations.json")
 	console.log(return_j);
 	if (return_j == true){
 		emissions = emissions*2;
-		
 	}
+
 	console.log("Estimated_emissions")
 	console.log(emissions);
 	document.getElementById("est_co2_emm").innerHTML = Math.round(emissions);
@@ -69,7 +70,7 @@ function display_route(from_id, to_id,wp_id){
 		document.getElementById("total_dist").innerHTML = total_distance/1000;
 		
 
-		calc_driving_emissions(total_distance/1000,document.getElementById("fuel_type"),document.getElementById("car_size"))
+		calc_driving_emissions(document.getElementById("total_dist").innerHTML,document.getElementById("fuel_type"),document.getElementById("car_size"),document.getElementById("return_j").checked);
 		}
 	  }        
       });	
@@ -83,7 +84,6 @@ function autocomplete_inputs(){
 		autocomplete_wp = new google.maps.places.Autocomplete(document.getElementById("wp"))
 		
 		traveler_num = document.getElementById("traveler_num");
-		crsid = document.getElementById("crsid");
 		date = document.getElementById("date");
 		role = document.getElementById("role");
 		fuel_type = document.getElementById("fuel_type");
@@ -97,7 +97,6 @@ function autocomplete_inputs(){
 		
 		
 		traveler_num.addEventListener('change', meta_info_changed);
-		crsid.addEventListener('change',meta_info_changed);
 		date.addEventListener('change', meta_info_changed);
 		role.addEventListener('change', meta_info_changed);
 		fuel_type.addEventListener('change', meta_info_changed);
@@ -148,7 +147,6 @@ async function route_changed(){
 		function meta_info_changed(){
 			
 		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
-		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
 		document.getElementById("inputted_traveler_num").innerHTML = document.getElementById("traveler_num").value;
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_fuel").innerHTML = document.getElementById("fuel_type").value;

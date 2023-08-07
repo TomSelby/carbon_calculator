@@ -24,14 +24,15 @@ function calc_transit_emissions(route,return_j){
 		}
 				
 				
-		if (return_j == true){
-			console.log('poii')
-			total_emissions = total_emissions*2;
-			
-		}
+		
 	}
-	
+	// Double if a return journey
+	if (return_j == true){
+			console.log('Return Jorney')
+			total_emissions = total_emissions*2;
+		}
 	document.getElementById("est_co2_emm").innerHTML = Math.round(total_emissions);
+	
 
 };
 	

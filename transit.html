@@ -8,18 +8,27 @@
 <link rel="stylesheet" type ="text/css" href = "css/style.css"/>
 
 <script src="js/transit.js"></script>
+<script type = 'module' src = "js/transit_auth.js"></script>
 
 </head>
   <body>
   <center>
-  <h1>CO2 Travel Emissions Calculator-Transit</h1>
+  <h1>Travel Emissions Calculator (Public Transport)</h1>
   </center>
   </body>
   <div id = "top-panel">
-  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a><br><a href = "manual.html">Manual Submission</a>
+  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a><br><a href = "manual.html">Manual</a>
+  
+  <div>
+    <button id = 'login' type="button">Sign in</button>
+	<button id = 'logout' type = 'button'>Sign Out</button>
+ </div>
+  <div id='username'>
+  Signed in user: <span style="color:green;font-weight:bold;" id="signed_in_user"></span>
+  </div>
   </div>
   
- 
+  
   <br>
     
 <div>
@@ -69,7 +78,7 @@
 <div id="estimated_emissions">
 <h3>Estimated Emissions</h3>
 	<div>
-	<i>Travelled Distance: <b><span id="travel_dist"></span> km </b></i>
+	<i>One way distance: <b><span id="travel_dist"></span> km </b></i>
 	</div>
 	<div>
 	<i>Estimated total kgs of CO2 Emitted: <b><span id="est_co2_emm"></span></b></i>
@@ -81,50 +90,6 @@
 
 <div id="Submit Data">
 <button id = "send">Submit Data</button>
-	<script type = "module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg",
-    authDomain: "co2-calc-367923.firebaseapp.com",
-    databaseURL: "https://co2-calc-367923-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "co2-calc-367923",
-    storageBucket: "co2-calc-367923.appspot.com",
-    messagingSenderId: "102663905016",
-    appId: "1:102663905016:web:80ecdf2ec7115f42d8a50d",
-    measurementId: "G-KSH5ELJK7N"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase();
-
-function InsertData(){
-  set(ref(db, String(Date.now())), {
-    manual_input: 'false',
-	method: 'transit',
-    crsid: document.getElementById("crsid").value,
-    date: document.getElementById("date").value,
-	origin: document.getElementById('from').value,
-	destination: document.getElementById('to').value,
-	distance: document.getElementById("travel_dist").innerHTML,
-	total_co2: document.getElementById("est_co2_emm").innerHTML,
-	return_journey:document.getElementById('return_j').checked
-	})
-	.then(()=>{
-	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
-	location.reload()
-	})
-	.catch((error)=>{
-	alert(error)
-	});
-}
-
-	var send_btn = document.getElementById("send");
-	send_btn.addEventListener('click', InsertData);
-
-</script>
 </div>
 <br>
 

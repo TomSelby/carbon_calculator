@@ -8,17 +8,28 @@
 <meta http-equiv ="X-UA-Compatible" content="ie=edge">
 <title>Travel Carbon Emissions Calculator</title>
 <link rel="stylesheet" type ="text/css" href = "css/style.css"/>
+<script type="module" src="js/air_auth.js"></script>
 
 
 </head>
   <body>
 
   <center>
-  <h1>CO2 Travel Emissions Calculator-Air</h1>
+  <h1>Travel Emissions Calculator (Air)</h1>
   </center>
   
   <div id = "top-panel">
-  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a><br><a href = "manual.html">Manual Submission</a>
+  <a href = "index.html">Home</a><br><a href = "driving.html">Driving</a><br><a href="air.html">Air</a><br><a href = "transit.html">Public Transport</a><br><a href = "manual.html">Manual</a>
+  
+  <div>
+    <button id = 'login' type="button">Sign in</button>
+	<button id = 'logout' type = 'button'>Sign Out</button>
+ </div>
+  <div id='username'>
+  Signed in user: <span style="color:green;font-weight:bold;" id="signed_in_user"></span>
+  </div>
+  
+  
   </div>
   <br>
 <center>
@@ -45,9 +56,7 @@
 		<input type = "number" id = "distance" placeholder = "Distance travelled (km)", style="width: 28.5em"/>
 		</div>	
 <br>
-	
-	<b>CRSid: </b><input type ='text', id="crsid", placeholder="anon123">
-	
+		
 	<b>Date of Travel: </b><input type='date' id='date'>
 	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
 						 <option value = "Post-Doc">Post-Doc</option> 
@@ -55,6 +64,8 @@
 						 <option value = "Masters">Masters Student</option> 
 						 <option value = "Undergraduate">Undergraduate Student</option> 
 						 <option value = "Other">Other</option> </select>
+	<b> Return Journey:</b><input type="checkbox" id="return_j"/>
+
 				
 	
 <br>
@@ -71,59 +82,15 @@
 	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
 	<i>, CO2/journey (kg): <b><span id = "inputted_emissions"></span></b></i>
 	<i>, Distance (km): <b><span id = "inputted_distance"></span></b></i>
-
-	<i>, CRSid: <b><span id="inputted_crsid"></span></b></i>
 	<i>, Date: <b><span id="inputted_date"></span></b></i>
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
+	<i>, Return Journey: <b><span id ="inputted_return"></span></b></i>
+
 
  </div>
  <br>
  <div id="Submit Data">
 <button id = "send">Submit Data</button>
-	<script type = "module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCd7nuCEuD7ySAQN8bNxZqpYLUrSQUbpcg",
-    authDomain: "co2-calc-367923.firebaseapp.com",
-    databaseURL: "https://co2-calc-367923-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "co2-calc-367923",
-    storageBucket: "co2-calc-367923.appspot.com",
-    messagingSenderId: "102663905016",
-    appId: "1:102663905016:web:80ecdf2ec7115f42d8a50d",
-    measurementId: "G-KSH5ELJK7N"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase();
-
-function InsertData(){
-  set(ref(db, String(Date.now())), {
-	manual_input: 'false',
-	method: 'air',
-    crsid: document.getElementById("crsid").value,
-    date: document.getElementById("date").value,
-	role: document.getElementById("role").value,
-	origin: document.getElementById('from').value,
-	destination: document.getElementById('to').value,
-	distance: document.getElementById("distance").value,
-	total_co2: document.getElementById("emmissions").value
-	})
-	.then(()=>{
-	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
-	location.reload()
-	})
-	.catch((error)=>{
-	alert(error)
-	});
-}
-
-	var send_btn = document.getElementById("send");
-	send_btn.addEventListener('click', InsertData);
-
-</script>
 </div>
 
 </center>
@@ -131,29 +98,29 @@ function InsertData(){
 
 <script>
 date = document.getElementById("date");
-crsid = document.getElementById("crsid");
 role = document.getElementById("role");
 origin = document.getElementById("from");
 destination = document.getElementById("to");
 emissions = document.getElementById("emmissions");
 distance = document.getElementById("distance");
+return_j = document.getElementById("return_j");
 // Add listeners
 origin.addEventListener('change', info_changed);
 destination.addEventListener('change', info_changed);
-crsid.addEventListener('change', info_changed);
 date.addEventListener('change', info_changed);
 role.addEventListener('change', info_changed);
 emissions.addEventListener('change', info_changed);
 distance.addEventListener('change', info_changed);
+return_j.addEventListener('change', info_changed);
 
 function info_changed(){
 		document.getElementById("inputted_origin").innerHTML = document.getElementById("from").value;
 		document.getElementById("inputted_destination").innerHTML = document.getElementById("to").value;
-		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
 		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_emissions").innerHTML = document.getElementById("emmissions").value;
 		document.getElementById("inputted_distance").innerHTML = document.getElementById("distance").value;
+		document.getElementById("inputted_return").innerHTML = document.getElementById('return_j').checked;
 		}
 </script>
 </body>
