@@ -37,6 +37,8 @@ signInWithPopup(auth, provider)
 	
 	if (email_domain != 'cam.ac.uk'){// Make sure cam user
 	signOut(auth).then(() => {
+	sessionStorage.removeItem("CRSid");
+
 	alert("Please sign in with CRSid");
 	location.reload()
 	}).catch((error) => {

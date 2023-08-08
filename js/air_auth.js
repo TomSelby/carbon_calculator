@@ -32,11 +32,12 @@ signInWithPopup(auth, provider)
 	console.log(user);
 	const crsid = user['email'].split('@')[0]; // defined as a global variable
 	sessionStorage.setItem("CRSid", crsid);
-
 	const email_domain = user['email'].split('@')[1];
 	
 	if (email_domain != 'cam.ac.uk'){// Make sure cam user
 	signOut(auth).then(() => {
+	sessionStorage.removeItem("CRSid");
+
 	alert("Please sign in with CRSid");
 	location.reload()
 	}).catch((error) => {
