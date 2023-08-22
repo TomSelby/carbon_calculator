@@ -133,7 +133,6 @@ function autocomplete_inputs(){
 		function meta_info_changed(){
 			
 		document.getElementById("inputted_date").innerHTML = document.getElementById("date").value;
-		document.getElementById("inputted_crsid").innerHTML = document.getElementById("crsid").value;
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_return").innerHTML = document.getElementById("return_j").checked;
 		
