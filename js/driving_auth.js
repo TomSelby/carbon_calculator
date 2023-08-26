@@ -2,16 +2,20 @@ import { getDatabase, ref, set ,onValue} from "https://www.gstatic.com/firebasej
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getAuth,GoogleAuthProvider,signInWithPopup,signOut} from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyD05bky4dBxfyQlRaFVRrW-jAqs-x9gp9k",
-    authDomain: "co2-calc-367923.firebaseapp.com",
-    databaseURL: "https://co2-calc-367923-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "co2-calc-367923",
-    storageBucket: "co2-calc-367923.appspot.com",
-    messagingSenderId: "102663905016",
-    appId: "1:102663905016:web:80ecdf2ec7115f42d8a50d",
-    measurementId: "G-KSH5ELJK7N"
-  };
+  const firebaseConfig = {
+  apiKey: "AIzaSyBmsFgDym6LSrqb_KeoH46qmefiDqxgqQ8",
+  authDomain: "stranks-emissions-calc.firebaseapp.com",
+  databaseURL:"https://stranks-emissions-calc-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "stranks-emissions-calc",
+  storageBucket: "stranks-emissions-calc.appspot.com",
+  messagingSenderId: "1011068278586",
+  appId: "1:1011068278586:web:6751acc06c83fa37012203",
+  measurementId: "G-1NL7TYWEFZ"
+};
+
+
+
+  
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

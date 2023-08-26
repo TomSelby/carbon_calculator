@@ -82,7 +82,7 @@ function autocomplete_inputs(){
 		
 		autocomplete_from = new google.maps.places.Autocomplete(document.getElementById("from"));
 		autocomplete_to = new google.maps.places.Autocomplete(document.getElementById("to"));
-		crsid = document.getElementById("crsid");
+		
 		date = document.getElementById("date");
 		role = document.getElementById("role");
 		return_j = document.getElementById("return_j");
@@ -92,7 +92,6 @@ function autocomplete_inputs(){
 		
 	
 		
-		crsid.addEventListener('change',meta_info_changed);
 		date.addEventListener('change', meta_info_changed);
 		role.addEventListener('change', meta_info_changed);
 		return_j.addEventListener('change', meta_info_changed);
