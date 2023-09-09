@@ -1,4 +1,4 @@
-import { getDatabase, ref, set ,onValue} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+import { getDatabase, ref, set ,onValue, remove} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getAuth,GoogleAuthProvider,signInWithPopup,signOut} from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js';
 
@@ -78,22 +78,28 @@ login_btn.addEventListener('click', signin);
 var sign_out_btn = document.getElementById("logout");
 sign_out_btn.addEventListener('click',sign_out);
 
+function delete_entry(row_id){
+	console.log(row_id);
+	// The signed-in user info.
+	const auth = getAuth();
+	if (auth.currentUser == null){
+		alert('Please sign in to submit data');	
+	};
+	const userId = auth.currentUser.uid;
+	
+	remove(ref(db,'users/' +userId+'/'+String(row_id)));
+	
 
+}
 
 	
 function renderTable(arr,data){
 	// Create anchor element
-	
-				
-				
-				
-				
-				
 	var table = document.getElementById("tbody");
 	while(table.hasChildNodes()){
     table.removeChild(table.firstChild);
     }
-    
+    var j = 0;
 	arr.forEach(function (row){
 		let timestamp = row;
 		let date = data[row]['date'];
@@ -104,11 +110,9 @@ function renderTable(arr,data){
 		let return_journey = data[row]['return_journey'];
 		let co2eq = data[row]['total_co2'];
 		
-		
+		// Create row
 		var tr = document.createElement('TR');
 		table.appendChild(tr);
-				
-		
 		
 		let entry = [timestamp, date, origin, destination, method, distance, return_journey, co2eq]
 		
@@ -119,8 +123,24 @@ function renderTable(arr,data){
 			td.appendChild(document.createTextNode(entry[i]));
 			tr.appendChild(td);
 		};
-	
+		
+		// 1. Create the button
+		var del_btn = document.createElement("button");
+		del_btn.innerHTML = "Delete";
+		del_btn.id = j; // set the button id as the row it's in
 
+		// 2. Append somewhere
+		var del_btn_table = document.createElement('delete_btn');
+		del_btn_table.appendChild(del_btn);
+
+		// Finally append del btn
+		tr.appendChild(del_btn);
+		// 3. Add event handler
+		
+		del_btn.addEventListener("click", function(){
+		delete_entry(table.rows[del_btn.id].cells[0].textContent);//pass the entry id (using button id (row)) into the delete entry func
+		});
+		j++;// increment button id/row counter
 	});
 };
 
@@ -170,8 +190,6 @@ renderChart([{name:'distance',points: distance_over_time}],'distance_chartDiv', 
 renderTable(arr,data);
 });	
 };
-
-
 
 var update_charts_btn = document.getElementById("update_charts");
 update_charts_btn.addEventListener('click', update_charts);
