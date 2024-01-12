@@ -7,17 +7,14 @@
 	text-align:center;
 	line-height: 30px;
 }
-::placeholder {
-  font-family:Consolas;
-}
-select{font-family:Consolas;}
+
+html,
 body{
-	background-color: #f9f9f9;
+	background-color: #FDFDFD;
 	height: 100%;
 	margin: 10;
 	padding: 10;
-	font-family:Consolas;
-	
+	font-family:Consolas;	
 }
 table{
 	border-collapse: collapse;
@@ -39,4 +36,12 @@ a{text-decoration:none;}
 
 button {
     font-family: inherit;
+}
+::placeholder {
+  font-family:Consolas;
+}
+select{font-family:Consolas;}
+input[type="text"]
+{
+    font-family:Consolas;
 }

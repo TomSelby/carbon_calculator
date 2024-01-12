@@ -30,7 +30,7 @@ function display_route(from_id, to_id,wp_id){
 	let directionsService = new google.maps.DirectionsService();
 	let directionsRenderer = new google.maps.DirectionsRenderer();
 	directionsRenderer.setMap(map); // Existing map object displays directions
-
+	console.log('map created')
 
 	//Display route
 	directionsService.route({
