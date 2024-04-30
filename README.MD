@@ -1,1 +1,1 @@
-Travel emissions calculator using Google Maps API and firebase database for recording of carbon emissions
+Travel emissions calculator using the Google Maps API and Firebase realtime database for recording travel emissions
