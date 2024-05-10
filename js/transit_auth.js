@@ -95,7 +95,7 @@ function InsertData(){
 	return_journey:document.getElementById('return_j').checked
 	})
 	.then(()=>{
-	alert("Thank you, your data has been successfully stored, if you made a mistake in your submission please contact tas72");
+	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
 	location.reload()
 	})
 	.catch((error)=>{
