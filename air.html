@@ -35,7 +35,7 @@
 <center>
   <div>
 
-  Please use the ICAO calculator found <a href="https://applications.icao.int/icec/Home/Index" target="_blank">here</a> then input your emissions below.
+  Please use the <a href="https://applications.icao.int/icec/Home/Index" target="_blank">ICAO calculator</a> before inputting your emissions below.
   </div>
  
 <br>
@@ -53,10 +53,10 @@
 		<input type = "number" id = "emmissions" placeholder = "Total passengers' CO2/journey (kg)", style="width: 28.5em"/>
 		</div>
 		<div>
-		<input type = "number" id = "distance" placeholder = "Distance travelled (km)", style="width: 28.5em"/>
+		<input type = "number" id = "distance" min="0" placeholder = "Distance travelled (km)", style="width: 28.5em"/>
 		</div>	
 <br>
-		
+	<b>Description: </b><input type ="text" id="description" size='50'>
 	<b>Date of Travel: </b><input type='date' id='date'>
 	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
 						 <option value = "Post-Doc">Post-Doc</option> 
@@ -64,7 +64,9 @@
 						 <option value = "Masters">Masters Student</option> 
 						 <option value = "Undergraduate">Undergraduate Student</option> 
 						 <option value = "Other">Other</option> </select>
-	<b> Return Journey:</b><input type="checkbox" id="return_j"/>
+	<b> Round Trip:</b><input type="checkbox" id="return_j"/>
+	<b>Class </b><select id = 'Class'><option value = "Economy">Economy</option>
+										<option value = "Premium">Premium</option> </select>
 
 				
 	
@@ -82,9 +84,11 @@
 	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
 	<i>, CO2/journey (kg): <b><span id = "inputted_emissions"></span></b></i>
 	<i>, Distance (km): <b><span id = "inputted_distance"></span></b></i>
+	<i>, Description: <b><span id="inputted_description"></span></b></i>
 	<i>, Date: <b><span id="inputted_date"></span></b></i>
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
-	<i>, Return Journey: <b><span id ="inputted_return"></span></b></i>
+	<i>, Round Trip: <b><span id ="inputted_return"></span></b></i>
+	<i>, Class: <b><span id ="inputted_Class"></span></b></i>
 
 
  </div>
@@ -103,7 +107,9 @@ origin = document.getElementById("from");
 destination = document.getElementById("to");
 emissions = document.getElementById("emmissions");
 distance = document.getElementById("distance");
+description = document.getElementById('description');
 return_j = document.getElementById("return_j");
+Class = document.getElementById('Class');
 // Add listeners
 origin.addEventListener('change', info_changed);
 destination.addEventListener('change', info_changed);
@@ -111,7 +117,9 @@ date.addEventListener('change', info_changed);
 role.addEventListener('change', info_changed);
 emissions.addEventListener('change', info_changed);
 distance.addEventListener('change', info_changed);
+description.addEventListener('change',info_changed);
 return_j.addEventListener('change', info_changed);
+Class.addEventListener('change',info_changed);
 
 function info_changed(){
 		document.getElementById("inputted_origin").innerHTML = document.getElementById("from").value;
@@ -121,6 +129,9 @@ function info_changed(){
 		document.getElementById("inputted_emissions").innerHTML = document.getElementById("emmissions").value;
 		document.getElementById("inputted_distance").innerHTML = document.getElementById("distance").value;
 		document.getElementById("inputted_return").innerHTML = document.getElementById('return_j').checked;
+		document.getElementById("inputted_description").innerHTML = document.getElementById('description').value;
+		document.getElementById("inputted_Class").innerHTML = document.getElementById('Class').value;
+
 		}
 </script>
 </body>

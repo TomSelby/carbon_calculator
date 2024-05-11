@@ -5,16 +5,21 @@
 #top-panel{
 	border:3px solid #999;
 	text-align:center;
+	font-weight: bold;
 	line-height: 30px;
+	background-image: url("car.png");
+	background-repeat: repeat;
 }
 
 html,
 body{
 	background-color: #FDFDFD;
+	
 	height: 100%;
 	margin: 10;
 	padding: 10;
-	font-family:Consolas;	
+	font-family:Consolas;
+   
 }
 table{
 	border-collapse: collapse;

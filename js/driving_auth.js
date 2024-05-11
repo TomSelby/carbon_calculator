@@ -77,6 +77,7 @@ function sign_out(){
 
 function InsertData(){
 	
+	
 	// The signed-in user info.
 	const auth = getAuth();
 	if (auth.currentUser == null){
@@ -84,23 +85,21 @@ function InsertData(){
 		
 	};
 	const userId = auth.currentUser.uid;
-	
-	
 	set(ref(db,'users/' +userId+'/'+String((Date.now()))), {
 	crsid: document.getElementById("signed_in_user").innerHTML,
     manual_input: 'false',
-	method: 'driving',
+	method: 'DRIVING',
     date: document.getElementById("date").value,
     num_of_travelers : document.getElementById("traveler_num").value,
 	role: document.getElementById("role").value,
 	fuel: document.getElementById("fuel_type").value,
 	car_size: document.getElementById("car_size").value,
 	origin: document.getElementById('from').value,
-	waypoint: document.getElementById('wp').value,
+	waypoints: wp_ids,
 	destination: document.getElementById('to').value,
 	distance: document.getElementById("total_dist").innerHTML,
 	total_co2:document.getElementById("est_co2_emm").innerHTML,
-	return_journey:document.getElementById('return_j').checked
+	description:document.getElementById("description").value
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");

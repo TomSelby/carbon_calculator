@@ -87,12 +87,16 @@ function InsertData(){
 	crsid: document.getElementById("signed_in_user").innerHTML,
     manual_input: 'false',
 	method: 'air',
-    date: document.getElementById("date").value,
-	role: document.getElementById("role").value,
 	origin: document.getElementById('from').value,
 	destination: document.getElementById('to').value,
+	total_co2: document.getElementById("emmissions").value,
 	distance: document.getElementById("distance").value,
-	total_co2: document.getElementById("emmissions").value
+	date: document.getElementById("date").value,
+	role: document.getElementById("role").value,
+	round_trip:document.getElementById('return_j').checked,
+	Class:document.getElementById('Class').value,
+	description:document.getElementById("description").value
+	
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");

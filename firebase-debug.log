@@ -1,0 +1,165 @@
+[debug] [2024-05-08T16:26:36.604Z] ----------------------------------------------------------------------
+[debug] [2024-05-08T16:26:36.606Z] Command:       C:\Users\tas72\DOWNLO~1\firebase-tools-instant-win.exe C:\Users\tas72\.cache\firebase\tools\lib\node_modules\firebase-tools\lib\bin\firebase deploy --only functions
+[debug] [2024-05-08T16:26:36.606Z] CLI Version:   13.8.0
+[debug] [2024-05-08T16:26:36.606Z] Platform:      win32
+[debug] [2024-05-08T16:26:36.606Z] Node Version:  v18.5.0
+[debug] [2024-05-08T16:26:36.608Z] Time:          Wed May 08 2024 17:26:36 GMT+0100 (British Summer Time)
+[debug] [2024-05-08T16:26:36.608Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-08T16:26:36.662Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-08T16:26:36.663Z] > authorizing via signed-in user (tselby8@gmail.com)
+[debug] [2024-05-08T16:26:36.663Z] [iam] checking project stranks-emissions-calc for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-05-08T16:26:36.665Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions [none]
+[debug] [2024-05-08T16:26:36.665Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:36.665Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-05-08T16:26:37.292Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions 200
+[debug] [2024-05-08T16:26:37.293Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-05-08T16:26:37.293Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-05-08T16:26:37.293Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-05-08T16:26:37.878Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-05-08T16:26:37.878Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'stranks-emissions-calc'...
+[info] 
+[info] i  deploying functions 
+[debug] [2024-05-08T16:26:37.883Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc [none]
+[debug] [2024-05-08T16:26:38.091Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc 200
+[debug] [2024-05-08T16:26:38.091Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc {"projectId":"stranks-emissions-calc","projectNumber":"1011068278586","displayName":"stranks-emissions-calc","name":"projects/stranks-emissions-calc","resources":{"hostingSite":"stranks-emissions-calc","realtimeDatabaseInstance":"stranks-emissions-calc-default-rtdb"},"state":"ACTIVE","etag":"1_6207b6a9-d7a6-45b9-99d2-cad3e58d5f68"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-05-08T16:26:38.096Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-05-08T16:26:38.097Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:38.098Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-05-08T16:26:38.098Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:38.099Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com [none]
+[debug] [2024-05-08T16:26:38.099Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:38.100Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com [none]
+[debug] [2024-05-08T16:26:38.100Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:38.912Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com 200
+[debug] [2024-05-08T16:26:38.912Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-05-08T16:26:38.914Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com 200
+[debug] [2024-05-08T16:26:38.914Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com [omitted]
+[warn] !  artifactregistry: missing required API artifactregistry.googleapis.com. Enabling now... 
+[debug] [2024-05-08T16:26:38.915Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com:enable [none]
+[debug] [2024-05-08T16:26:38.915Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com:enable x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:38.939Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com 200
+[debug] [2024-05-08T16:26:38.939Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com [omitted]
+[warn] !  functions: missing required API cloudbuild.googleapis.com. Enabling now... 
+[debug] [2024-05-08T16:26:38.940Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com:enable [none]
+[debug] [2024-05-08T16:26:38.940Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com:enable x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:38.994Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com 200
+[debug] [2024-05-08T16:26:38.994Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-05-08T16:26:40.800Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com:enable 200
+[debug] [2024-05-08T16:26:40.801Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com:enable [omitted]
+[debug] [2024-05-08T16:26:40.955Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com:enable 200
+[debug] [2024-05-08T16:26:40.955Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com:enable [omitted]
+[debug] [2024-05-08T16:26:50.810Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com [none]
+[debug] [2024-05-08T16:26:50.810Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:50.961Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com [none]
+[debug] [2024-05-08T16:26:50.961Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:26:51.651Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com 200
+[debug] [2024-05-08T16:26:51.651Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-05-08T16:26:51.805Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com 200
+[debug] [2024-05-08T16:26:51.805Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-05-08T16:26:51.807Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc/adminSdkConfig [none]
+[debug] [2024-05-08T16:26:52.009Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc/adminSdkConfig 200
+[debug] [2024-05-08T16:26:52.009Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc/adminSdkConfig {"projectId":"stranks-emissions-calc","databaseURL":"https://stranks-emissions-calc-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"stranks-emissions-calc.appspot.com"}
+[debug] [2024-05-08T16:26:52.010Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/stranks-emissions-calc/configs [none]
+[debug] [2024-05-08T16:26:52.232Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/stranks-emissions-calc/configs 200
+[debug] [2024-05-08T16:26:52.232Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/stranks-emissions-calc/configs {}
+[debug] [2024-05-08T16:26:52.233Z] Customer code is not Node
+[debug] [2024-05-08T16:26:52.233Z] Validating python source
+[debug] [2024-05-08T16:26:52.233Z] Building python source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-05-08T16:26:52.234Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-05-08T16:26:52.253Z] Running command with virtualenv: command="C:\Users\tas72\OneDrive - University of Cambridge\Documents\PhD\Impact\Carbon_calculator\functions\venv\Scripts\activate.bat", args=["","&&","python.exe","-c","\"import firebase_functions; import os; print(os.path.dirname(firebase_functions.__file__))\""]
+[debug] [2024-05-08T16:26:52.287Z] stderr: The system cannot find the path specified.
+
+[debug] [2024-05-08T16:26:52.332Z] Error: spawn "C:\Users\tas72\OneDrive - University of Cambridge\Documents\PhD\Impact\Carbon_calculator\functions\venv\Scripts\activate.bat" ENOENT
+    at notFoundError (C:\Users\tas72\.cache\firebase\tools\lib\node_modules\cross-spawn\lib\enoent.js:6:26)
+    at verifyENOENT (C:\Users\tas72\.cache\firebase\tools\lib\node_modules\cross-spawn\lib\enoent.js:40:16)
+    at cp.emit (C:\Users\tas72\.cache\firebase\tools\lib\node_modules\cross-spawn\lib\enoent.js:27:25)
+    at ChildProcess._handle.onexit (node:internal/child_process:291:12)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-05-08T16:28:14.780Z] ----------------------------------------------------------------------
+[debug] [2024-05-08T16:28:14.781Z] Command:       C:\Users\tas72\DOWNLO~1\firebase-tools-instant-win.exe C:\Users\tas72\.cache\firebase\tools\lib\node_modules\firebase-tools\lib\bin\firebase deploy --only functions
+[debug] [2024-05-08T16:28:14.782Z] CLI Version:   13.8.0
+[debug] [2024-05-08T16:28:14.782Z] Platform:      win32
+[debug] [2024-05-08T16:28:14.782Z] Node Version:  v18.5.0
+[debug] [2024-05-08T16:28:14.784Z] Time:          Wed May 08 2024 17:28:14 GMT+0100 (British Summer Time)
+[debug] [2024-05-08T16:28:14.784Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-08T16:28:14.836Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-08T16:28:14.837Z] > authorizing via signed-in user (tselby8@gmail.com)
+[debug] [2024-05-08T16:28:14.837Z] [iam] checking project stranks-emissions-calc for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-05-08T16:28:14.838Z] > refreshing access token with scopes: []
+[debug] [2024-05-08T16:28:14.840Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-05-08T16:28:14.840Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-05-08T16:28:14.954Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-05-08T16:28:14.954Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-05-08T16:28:14.971Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions [none]
+[debug] [2024-05-08T16:28:14.971Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:28:14.971Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-05-08T16:28:15.580Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions 200
+[debug] [2024-05-08T16:28:15.580Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/stranks-emissions-calc:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-05-08T16:28:15.581Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-05-08T16:28:15.581Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-05-08T16:28:16.192Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-05-08T16:28:16.192Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/stranks-emissions-calc/serviceAccounts/stranks-emissions-calc@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'stranks-emissions-calc'...
+[info] 
+[info] i  deploying functions 
+[debug] [2024-05-08T16:28:16.203Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc [none]
+[debug] [2024-05-08T16:28:16.553Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc 200
+[debug] [2024-05-08T16:28:16.553Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc {"projectId":"stranks-emissions-calc","projectNumber":"1011068278586","displayName":"stranks-emissions-calc","name":"projects/stranks-emissions-calc","resources":{"hostingSite":"stranks-emissions-calc","realtimeDatabaseInstance":"stranks-emissions-calc-default-rtdb"},"state":"ACTIVE","etag":"1_6207b6a9-d7a6-45b9-99d2-cad3e58d5f68"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-05-08T16:28:16.559Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-05-08T16:28:16.559Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:28:16.560Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-05-08T16:28:16.560Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:28:16.561Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com [none]
+[debug] [2024-05-08T16:28:16.561Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:28:16.562Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com [none]
+[debug] [2024-05-08T16:28:16.562Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com x-goog-quota-user=projects/stranks-emissions-calc
+[debug] [2024-05-08T16:28:17.372Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com 200
+[debug] [2024-05-08T16:28:17.372Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-05-08T16:28:17.384Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com 200
+[debug] [2024-05-08T16:28:17.384Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-05-08T16:28:17.386Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com 200
+[debug] [2024-05-08T16:28:17.387Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-05-08T16:28:17.390Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com 200
+[debug] [2024-05-08T16:28:17.391Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/stranks-emissions-calc/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-05-08T16:28:17.391Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc/adminSdkConfig [none]
+[debug] [2024-05-08T16:28:17.608Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc/adminSdkConfig 200
+[debug] [2024-05-08T16:28:17.608Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/stranks-emissions-calc/adminSdkConfig {"projectId":"stranks-emissions-calc","databaseURL":"https://stranks-emissions-calc-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"stranks-emissions-calc.appspot.com"}
+[debug] [2024-05-08T16:28:17.608Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/stranks-emissions-calc/configs [none]
+[debug] [2024-05-08T16:28:17.790Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/stranks-emissions-calc/configs 200
+[debug] [2024-05-08T16:28:17.790Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/stranks-emissions-calc/configs {}
+[debug] [2024-05-08T16:28:17.793Z] Customer code is not Node
+[debug] [2024-05-08T16:28:17.794Z] Validating python source
+[debug] [2024-05-08T16:28:17.794Z] Building python source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-05-08T16:28:17.796Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-05-08T16:28:17.814Z] Running command with virtualenv: command="C:\Users\tas72\OneDrive - University of Cambridge\Documents\PhD\Impact\Carbon_calculator\functions\venv\Scripts\activate.bat", args=["","&&","python.exe","-c","\"import firebase_functions; import os; print(os.path.dirname(firebase_functions.__file__))\""]
+[debug] [2024-05-08T16:28:17.846Z] stderr: The system cannot find the path specified.
+
+[debug] [2024-05-08T16:28:17.897Z] Error: spawn "C:\Users\tas72\OneDrive - University of Cambridge\Documents\PhD\Impact\Carbon_calculator\functions\venv\Scripts\activate.bat" ENOENT
+    at notFoundError (C:\Users\tas72\.cache\firebase\tools\lib\node_modules\cross-spawn\lib\enoent.js:6:26)
+    at verifyENOENT (C:\Users\tas72\.cache\firebase\tools\lib\node_modules\cross-spawn\lib\enoent.js:40:16)
+    at cp.emit (C:\Users\tas72\.cache\firebase\tools\lib\node_modules\cross-spawn\lib\enoent.js:27:25)
+    at ChildProcess._handle.onexit (node:internal/child_process:291:12)
+[error] 
+[error] Error: An unexpected error has occurred.

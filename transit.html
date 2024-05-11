@@ -33,14 +33,14 @@
     
 <div>
 	<center>
-		<div>
+		<div id='places' class = "row">
 		<input type="text" id="from" placeholder = "Origin", size='50'/>
-		</div>
-		<div>
 		<input type="text" id="to" placeholder = "Destination", size='50'/>
-		</div>	
+		</div>
 <br>
-	
+<br>
+	<b>Description: </b><input type ="text" id="description" size='50'>
+
 	<b>Date of Travel: </b><input type='date' id='date'>
 	<b>Role: </b><select id = 'role'><option value = "PI">PI</option> 
 						 <option value = "Post-Doc">Post-Doc</option> 
@@ -52,7 +52,6 @@
 						 
 						 
 						 
-	<b> Return Journey:</b><input type="checkbox" id="return_j">
 	</center>
 <br>
 </div>
@@ -66,9 +65,9 @@
 	
 	<i>Origin: <b><span id="inputted_origin"></span></b></i>
 	<i>, Destination: <b><span id="inputted_destination"></span></b></i>
+	<i>, Description: <b><span id="inputted_description"></span></b></i>
 	<i>, Date: <b><span id="inputted_date"></span></b></i>
 	<i>, Role: <b><span id="inputted_role"></span></b></i>
-	<i>, Return Journey: <b><span id ="inputted_return"></span></b></i>
 
   </div>
 
@@ -76,7 +75,7 @@
 <div id="estimated_emissions">
 <h3>Estimated Emissions</h3>
 	<div>
-	<i>One way distance: <b><span id="travel_dist"></span> km </b></i>
+	<i>Total distance: <b><span id="total_dist"></span></b></i>
 	</div>
 	<div>
 	<i>Estimated total kgs of CO2 Emitted: <b><span id="est_co2_emm"></span></b></i>
@@ -95,7 +94,7 @@
 
 	<!-- Load the API key-->
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD05bky4dBxfyQlRaFVRrW-jAqs-x9gp9k&libraries=places&callback=initMap&v=weekly">	  
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4kvf_EGDfGG4JdHuJa6Gi023HZJ4Tl0A&libraries=places&callback=initMap&v=weekly">	  
 	</script>
   </body>
 </html>

@@ -88,6 +88,7 @@ function InsertData(){
 	role: document.getElementById("role").value,
 	origin: document.getElementById('from').value,
 	destination: document.getElementById('to').value,
+	description: document.getElementById('description').value,
 	distance: document.getElementById("distance").value,
 	total_co2: document.getElementById("emmissions").value,
 	return_journey:'false'

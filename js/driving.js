@@ -124,21 +124,18 @@ function autocomplete_inputs(){
 		role = document.getElementById("role");
 		fuel_type = document.getElementById("fuel_type");
 		car_size = document.getElementById("car_size");
-		return_j = document.getElementById("return_j");
-				
+		description = document.getElementById('description');
 		// Add listeners
 		autocomplete_from.addListener('place_changed', route_changed);
 		autocomplete_to.addListener('place_changed', route_changed);
-		
-		
 		traveler_num.addEventListener('change', meta_info_changed);
 		date.addEventListener('change', meta_info_changed);
 		role.addEventListener('change', meta_info_changed);
 		fuel_type.addEventListener('change', meta_info_changed);
 		car_size.addEventListener('change', meta_info_changed);
-		return_j.addEventListener('change', meta_info_changed);
+		description.addEventListener('change', meta_info_changed);
 		}
-		
+wp_ids = []; // as also use in auth.js file needs global scope
 function route_changed(){
 		
 		var correct_wps = get_correct_waypoints();
@@ -170,7 +167,7 @@ function meta_info_changed(){
 		document.getElementById("inputted_role").innerHTML = document.getElementById("role").value;
 		document.getElementById("inputted_fuel").innerHTML = document.getElementById("fuel_type").value;
 		document.getElementById("inputted_size").innerHTML = ["Small", "Medium", "Large", "Average"][document.getElementById("car_size").value];
-
+		document.getElementById("inputted_description").innerHTML = document.getElementById('description').value
 		calc_driving_emissions(total_distance/1000,document.getElementById("fuel_type"),document.getElementById("car_size"));
 		
 		

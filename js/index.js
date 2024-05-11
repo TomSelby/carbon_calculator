@@ -1,7 +1,7 @@
 import { getDatabase, ref, set ,onValue, remove} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { getAuth,GoogleAuthProvider,signInWithPopup,signOut} from 'https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js';
-import {} from 'dotenv/config'
+
 
   const firebaseConfig = {
   apiKey: "AIzaSyBmsFgDym6LSrqb_KeoH46qmefiDqxgqQ8",
@@ -22,7 +22,6 @@ const provider = new GoogleAuthProvider();
 
 console.log('Firebase initialized');
 
-console.log(process.env.FIREBASE_KEY);
 document.getElementById("signed_in_user").innerHTML = sessionStorage.getItem("CRSid");
 
 function signin(){
@@ -105,19 +104,19 @@ function renderTable(arr,data){
     var j = 0;
 	arr.forEach(function (row){
 		let timestamp = row;
-		let date = data[row]['date'];
+		let method = data[row]['method'];
 		let origin = data[row]['origin'];
 		let destination = data[row]['destination'];
-		let method = data[row]['method'];
+		let description = data [row]['description'];
+		let date = data[row]['date'];
 		let distance = data[row]['distance'];
-		let return_journey = data[row]['return_journey'];
 		let co2eq = data[row]['total_co2'];
 		
 		// Create row
 		var tr = document.createElement('TR');
 		table.appendChild(tr);
 		
-		let entry = [timestamp, date, origin, destination, method, distance, return_journey, co2eq];
+		let entry = [timestamp,method, origin, destination,description,date, distance, co2eq];
 		
 		for (var i=0; i < 8; i++){
 			

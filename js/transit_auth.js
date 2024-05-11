@@ -85,14 +85,15 @@ function InsertData(){
 	set(ref(db,'users/' +userId+'/'+String((Date.now()))), {
 	crsid: document.getElementById("signed_in_user").innerHTML,
     manual_input: 'false',
-	method: 'public transport',
+	method: 'TRANSIT',
     date: document.getElementById("date").value,
 	role: document.getElementById("role").value,
 	origin: document.getElementById('from').value,
 	destination: document.getElementById('to').value,
-	distance: document.getElementById("travel_dist").innerHTML,
+	distance: document.getElementById("total_dist").innerHTML,
 	total_co2:document.getElementById("est_co2_emm").innerHTML,
-	return_journey:document.getElementById('return_j').checked
+	description:document.getElementById("description").value
+
 	})
 	.then(()=>{
 	alert("Thank you, your data has been sucesfully sorted, if you made a mistake in your submission please contact tas72");
